@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Web Page</title>
+  <!-- <link rel="stylesheet" href="css/home.css"> -->
+  <link rel="stylesheet" href="css/home-media.css">
+  <!-- <link rel="stylesheet" href="css/home-media-device.css"> -->
+  <link rel="stylesheet" href="css/darkmode.css">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+    integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!-- Main -->
+  <main>
+    <header id="header">
+  <!-- 1. The only pure CSS trigger block -->
+  <input type="checkbox" id="menu-check">
+
+  <div class="container flex">
+    <div class="container1">
+      <a href="/" class="logo">
+        <div class="logoimg">
+          <h1>Unlocked</h1>
+        </div>
+      </a>
+    </div>
+
+    <!-- Main Navigation lists -->
+    <div class="linklists">
+      <ul class="flex">
+        <li><a href="/" class="link-active">Offices</a></li>
+        <li><a href="/">Services</a></li>
+        <li><a href="cultures.html">Cultures/Blogs</a></li>
+        <li><a href="/" id="unique-news">News</a></li>
+        <li><a href="/">Partners</a></li>
+      </ul>
+    </div>
+
+    <!-- Right Controls: The burger menu button sits directly inside here next to toggle -->
+    <div class="right-sidebar">
+      <div class="search-circle">
+        <input type="text" placeholder="Search..." class="js-search-circle">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-results js-results-box"></div>
+      </div>
+
+      <div class="toggle-button">
+        <input type="checkbox" class="toggle-input">
+      </div>
+
+      <div class="get-started">
+        <button><a href="/">Get Started</a></button>
+      </div>
+
+      <!-- CRITICAL ADDED: The missing burger bars layout lines -->
+      <label for="menu-check" class="burger-btn">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
+
+  </div>
+</header>
+
+
+
+    <!-- Start Layouts -->
+    <!-- #1 Section 1 of Carousel -->
+    <section class="sections-containers">
+      <!-- #1 Section 1 -->
+      <!-- carousel -->
+      <div class="container-carousel-front">
+        <!-- Touch Interactive Navigation Icons  (✦ (The Four-Pointed Star: &#x2726; ror U+2726 | and for  ▶ (The Right-Facing Triangle): &#x25B6; or U+25B6 )-->
+        <button class="nav-icon prev-btn" aria-label="Previous">🎋◀</button>
+        <button class="nav-icon next-btn" aria-label="Next">▶🎋</button>
+
+        <!-- Sliding Movie Track -->
+        <div class="carousel-track">
+          <div class="big-image"><img src="images/carousel-1.png" alt="1"></div>
+          <div class="big-image"><img src="images/carousel-2.png" alt="2"></div>
+          <div class="big-image"><img src="images/carousel-3.png" alt="3"></div>
+          <div class="big-image"><img src="images/carousel-4.jpg" alt="4"></div>
+          <div class="big-image"><img src="images/Vanilla20Three.webp" alt="Vanilla20Three"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- #2.1 Section 2 -->
+    <section class="section-1">
+      <h1>Discover The Best University In China Beijing</h1>
+      <div class="cardslists grid">
+        <div class="card-image">
+          <img src="images/card-1.png" alt="Card">
+          <div class="card-details">
+            <p class="title-detail">TEST-1</p>
+            <div class="card-desc">
+              <p>
+                Description deeper Description deeper Description deeper Description deeper Description deeper
+                Description deeper
+              </p>
+              <div class="learn-btn">
+                <a href="/">Check it now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-image">
+          <img src="images/card-2.jpg" alt="Card">
+          <div class="card-details">
+            <p class="title-detail">TEST-2</p>
+            <div class="card-desc">
+              <p>
+                Description deeper Description deeper Description deeper Description deeper Description deeper
+                Description deeper
+              </p>
+              <div class="learn-btn">
+                <a href="/">Check it now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-image">
+          <img src="images/card-3.png" alt="Card">
+          <div class="card-details">
+            <p class="title-detail">TEST-3</p>
+            <div class="card-desc">
+              <p>
+                Description deeper Description deeper Description deeper Description deeper Description deeper
+                Description deeper
+              </p>
+              <div class="learn-btn">
+                <a href="/">Check it now</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- #2.2 Section 2 -->
+    <!-- #3 Section 3 -->
+    <section class="section-3">
+      <h1>What Students Say About University In China Beijing ?</h1>
+      <div class="containers-grid">
+        <div class="left-side">
+          <div class="nav-desc-transparent">
+            <h2 class="title-hidden">THE FRONTIER OF TOMORROW</h2>
+          </div>
+          <div class="left-desc">
+            <p>
+              <strong>1. The Absolute Architecture of Tomorrow:</strong> True innovation does not depend on
+              yesterday's exhausted systems, nor does it yield to simplistic algorithmic prediction. It demands the
+              unyielding courage of the human spirit. In this definitive presentation, global icon Jack Ma delivers a
+              profound look into generational disruption. He completely shifts the core focus away from traditional
+              corporate metrics, instead unveiling the raw power of the Love Quotient (LQ)—the irreplaceable human
+              wisdom, deep empathy, and creative imagination that artificial intelligence and modern machines can
+              never truly replicate or conquer.
+            </p>
+
+            <p>
+              <strong>2. The Crucible of Extreme Hardship:</strong> Aspiring entrepreneurs must recognize that real
+              market dominance is never forged in comfortable environments. Ma outlines a legendary blueprint for
+              young innovators: to stop fearing institutional rejection and to firmly realize that while today is
+              difficult and tomorrow is much tougher, the day after tomorrow holds absolute, uncompromised victory.
+              Most people give up on tomorrow evening, completely missing the dawn of their greatest breakthroughs
+              simply because they lacked the sheer endurance to survive the darkest hours of institutional resistance.
+            </p>
+
+            <p>
+              <strong>3. Reframing Obstacles into Assets:</strong> Where the average individual sees a barrier, the
+              elite developer sees a massive commercial marketplace opportunity. Every single global complaint,
+              societal frustration, and industrial friction point is actually a hidden invitation to create value. By
+              adopting this hyper-resilient mindset, you stop complaining about existing market conditions and start
+              building the exact platforms that solve them, converting widespread societal skepticism into the
+              foundational bedrock of your independent enterprise.
+            </p>
+
+            <p>
+              <strong>4. The Dawn of the Digital Paradigm:</strong> We are transitioning out of the information age
+              and directly into the data manufacturing era. This massive structural transition rewards non-linear
+              thinkers who rely on their unique vision rather than standardized academic formulas. Your absolute edge
+              lies in your capability to combine technical mastery with profound emotional intelligence, ensuring that
+              your web applications serve real human needs while remaining aggressively ahead of global digital
+              trends.
+            </p>
+
+            <p>
+              <strong>5. Your Definitive Strategic Roadmap:</strong> Do not build for others; build to redefine the
+              industries that others rely on. This is your definitive call to action to out-innovate, out-persist, and
+              confidently command the global economy of tomorrow. By executing this vision with relentless
+              consistency, you transform your independent web platform from a standard technical project into a vital,
+              future-proof machine capable of dictating the trends of the digital frontier.
+            </p>
+          </div>
+
+
+        </div>
+        <div class="right-side">
+          <div class="video-title">
+            <h2>YOUNG PEOPLE ARE THE SOLUTIONS FOR TOMORROW</h2>
+          </div>
+          <div class="presentation-video">
+            <video src="/videos/motivation-video.mp4" controls></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- section no build -->
+    </section>
+
+    </section>
+
+    <!-- footer -->
+    <section class="section-5">
+      <div class="footer-containers">
+        <div class="footer-left-logo">
+          <div class="logo-footer">
+            <div class="logoimg-footer">
+              <!-- <img src="images/logo.png" alt="Logo"> -->
+              <a href="">
+                <p>Unlocked</p>
+              </a>
+            </div>
+            <div class="logo-desc">
+              <p>The strategic gateway to your unlimited potential—engineered to dismantle traditional barriers,
+                accelerate execution, and empower the independent builders of tomorrow's global landscape.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="footer-linkslists flex">
+          <ul>
+            <p>Quick Links</p>
+            <li><a href="#">Link 1 <span>↗</span></a></li>
+            <li><a href="#">Link 2 <span>↗</span></a></li>
+            <li><a href="#">Link 3 <span>↗</span></a></li>
+            <li><a href="#">Link 4 <span>↗</span></a></li>
+          </ul>
+
+          <ul>
+            <p>Resources</p>
+            <li><a href="#">Member Vault<span>↗</span></a></li>
+            <li><a href="#">Link 2<span>↗</span></a></li>
+            <li><a href="#">Link 3<span>↗</span></a></li>
+            <li><a href="#">Link 4<span>↗</span></a></li>
+          </ul>
+
+          <ul>
+            <p>Contact</p>
+            <li><a href="#">Link 1 <span>↗</span></a></li>
+            <li><a href="#">Link 2 <span>↗</span></a></li>
+            <li><a href="#">Link 3 <span>↗</span></a></li>
+            <li><a href="#">Link 4 <span>↗</span></a></li>
+          </ul>
+
+          <ul>
+            <p>Legals</p>
+            <li><a href="#">Privacy Policy <span>↗</span></a></li>
+            <li><a href="#">Cookie Policy <span>↗</span></a></li>
+            <li><a href="#">Terms of Service <span>↗</span></a></li>
+            <li><a href="#">Security <span>↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-down flex">
+        <p>Copyright &copy; 2026 Unlocked. All rights reserved.</p>
+        <p class="p-animate-status">
+          <span class="status-dot"></span>
+          Available for new projects
+        </p>
+      </div>
+    </section>
+    </section>
+  </main>
+
+
+  <!-- js -->
+  <script type="module" src="scripts/app.js"></script>
+  <!-- <script type="module" src="scripts/rep-search.js"></script> -->
+
+</body>
+
+</html>
+
+
+
+ <!-- THE PRODUCTION COMPONENT -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h3>Enterprise Architecture</h3>
+        <p style="color: #6b7280; font-size: 0.95rem;">
+          Production-ready framework built using logical layout engines, fluid typography mathematical vectors, and strict mobile optimization patterns.
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h3>Core Engine</h3>
+        <ul>
+          <li><a href="#">Pipelines</a></li>
+          <li><a href="#">Infrastructure</a></li>
+          <li><a href="#">Edge Analytics</a></li>
+          <li><a href="#">Security Kernels</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-column">
+        <h3>Dev Tools</h3>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Integrations</a></li>
+          <li><a href="#">System Status</a></li>
+          <li><a href="#">Beta Testing</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="footer-column">
+        <h3>Governance</h3>
+        <ul>
+          <li><a href="#">Data Privacy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Open Source Legal</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Copyright Sub-tray -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 SysCore Global Engineering. Built for Production Environments.</p>
+    </div>
+  </footer>
+
+
+
+
+
+   *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Fluid typography engine scales text seamlessly across viewports */
+      --footer-font-base: clamp(0.9rem, 0.85rem + 0.25vw, 1.15rem);
+      --footer-max-width: 1440px;
+      --footer-bg: #030712;
+      --footer-text: #9ca3af;
+      --footer-accent: #38bdf8;
+    }
+
+    body {
+      font: 400 var(--footer-font-base)/1.6 system-ui, sans-serif;
+      background: #0b0f19;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* ==========================================================================
+       [STAGE 0]: BASE SMARTPHONE STYLES (0px <= width < 576px)
+       Default behavior for portrait Android & iOS devices. No media queries.
+       ========================================================================== */
+    .site-footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      /* Fluid padding using mathematical clamp */
+      padding: clamp(2.5rem, 6vw, 5rem) 1rem 1.5rem 1rem;
+    }
+
+    .footer-container {
+      width: 100%;
+      /* Stack layout vertically by default on small mobile devices */
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      color: #ffffff;
+      font: 600 1.15rem/1.4 system-ui;
+      margin-bottom: 1rem;
+    }
+
+    .footer-column ul { list-style: none; }
+
+    /* Logical property shorthand targeting only the bottom margin */
+    .footer-column li:not(:last-child) { margin-block-end: 0.75rem; }
+
+    .footer-column a {
+      color: var(--footer-text);
+      text-decoration: none;
+      transition: color .2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-column a:hover { color: var(--footer-accent); }
+
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1f2937;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    /* ==========================================================================
+       MODERN MATHEMATICAL MEDIA QUERIES (Level 4 Specifications)
+       ========================================================================== */
+
+    /* [STAGE 1]: LANDSCAPE PHONES / FOLDABLES */
+    @media (width >= 576px) {
+      .footer-container {
+        display: grid;
+        /* Snaps from 1 vertical column into a balanced 2-column grid layout */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+    }
+
+    /* [STAGE 2]: PORTRAIT TABLETS */
+    @media (width >= 768px) {
+      .footer-container {
+        /* Limits width expansion and cleanly auto-centers using logical shorthand */
+        max-width: 720px;
+        margin-inline: auto;
+      }
+    }
+
+    /* [STAGE 3]: LARGE TABLETS & SMALL PC LAPTOPS */
+    @media (width >= 992px) {
+      .footer-container {
+        max-width: 960px;
+        /* Layout breaks structurally into 4 smooth horizontal tracks */
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* [STAGE 4]: STANDARD PC DESKTOP MONITORS */
+    @media (width >= 1200px) {
+      .footer-container {
+        /* Lock layout framework at maximum token width to keep design clean */
+        max-width: var(--footer-max-width);
+      }
+    }
+
+    /* [STAGE 5]: ULTRA-WIDE PC MONITORS / 4K DISPLAYS */
+    @media (width >= 1400px) {
+      .footer-container {
+        /* Proportional mathematical calculation to expand whitespace on big screens */
+        gap: calc(2.5rem * 1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+
+ 

@@ -1,0 +1,522 @@
+/* Layout Context Wrapper */
+.sections-containers {
+width: 100%;
+}
+
+/* 1. Viewport: The fixed window masking everything outside */
+.container-carousel-front {
+width: 100%;
+height: 400px;
+overflow: hidden;
+position: relative;
+}
+
+/* 2. Film Strip Track: Unbound flex container holding items side-by-side */
+.carousel-track {
+display: flex;
+height: 100%;
+width: max-content;
+will-change: transform;
+}
+
+/* 3. The Slide: Fixed dimension unit, structurally rigid */
+.big-image {
+width: 1200px;
+height: 100%;
+position: relative;
+flex-shrink: 0; /* Critical: stops flexbox from shrinking the width */
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0 10px; /* Optional gutter gap spacing */
+box-sizing: border-box;
+}
+
+.big-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 10px;
+}
+
+/* 4. Interactive Floating Touch Icon */
+.action-icon {
+position: absolute;
+bottom: 20px;
+right: 30px;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+border: none;
+background: rgba(255, 255, 255, 0.9);
+backdrop-filter: blur(5px);
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-icon:hover {
+transform: scale(1.1);
+}
+
+.action-icon .icon {
+font-size: 20px;
+color: #111;
+}
+
+
+<div class="container-carousel-front">
+  <div class="carousel-track">
+    <!-- Slide 1 -->
+    <div class="big-image">
+      <img src="images/carousel-1.png" alt="Carousel1">
+      <button class="action-icon" aria-label="Interact"><span class="icon">✦</span></button>
+    </div>
+    <!-- Slide 2 -->
+    <div class="big-image">
+      <img src="images/carousel-1.png" alt="Carousel1">
+      <button class="action-icon" aria-label="Interact"><span class="icon">✦</span></button>
+    </div>
+    <!-- Slide 3 -->
+    <div class="big-image">
+      <img src="images/carousel-1.png" alt="Carousel1">
+      <button class="action-icon" aria-label="Interact"><span class="icon">✦</span></button>
+    </div>
+    <!-- Slide 4 -->
+    <div class="big-image">
+      <img src="images/carousel-1.png" alt="Carousel1">
+      <button class="action-icon" aria-label="Interact"><span class="icon">✦</span></button>
+    </div>
+    <!-- Slide 5 -->
+    <div class="big-image">
+      <img src="images/carousel-1.png" alt="Carousel1">
+      <button class="action-icon" aria-label="Interact"><span class="icon">✦</span></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<section>
+  <div class="container-carousel-front">
+    <button class="next-btn">▶</button>
+    <button class="prev-btn">◀</button>
+
+    <!-- sliding movie track -->
+    <div class="carousel-track">
+      <div class="big-image">
+        <img src="" alt="">
+      </div>
+      <div class="big-image">
+        <img src="" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggleInput = document.querySelector('.toggle-input');
+  const isDark = localStorage.getItem('theme') === 'dark';
+
+  // save into local
+  if (isDark) {
+    document.body.classList.add('body');
+    if (toggleInput) toggleInput.checked = true;
+  } else {
+    document.body.classList.remove('body');
+    if (toggleInput) toggleInput.checked = false;
+  }
+
+  toggleInput.addEventListener('change', function () {
+    if (this.checked) {
+      document.body.classList.add('body');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('body');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+
+  // carousels
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const track = document.querySelector('.carousel-track');
+    const totalSlides = track.children.length;
+
+
+    let index = 0;
+
+    const update = () => {
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+      track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+    };
+
+
+    const nextSlide = () => {
+      index = (index + 1) % totalSlides;
+      update();
+    };
+
+
+    document.querySelector('.next-btn').addEventListener('click', nextSlide);
+
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+      index = (index - 1 + totalSlides) % totalSlides;
+      update();
+    });
+
+    setInterval(nextSlide, 4000);
+  });
+
+
+
+</script>
+
+<!-- search functional html -->
+<div class="search-circle">
+  <input type="text" placeholder="search" class="js-search-circle">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- DropDown container injected here -->
+  <div class="search-results js-search-results"></div>
+</div>
+
+<style>
+  .search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(20, 24, 33, 0.95); /* Deep dark theme background */
+  backdrop-filter: blur(8px);          /* Modern glass effect */
+  border: 1px solid #555;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 10;
+  display: none;
+}
+
+.search-results a, 
+.search-results ,.no-result {
+  display: block;
+  padding: 10px 12px;
+  color: #fff;                        /* White text */
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Gray styling for the "Not found" state */
+.search-results 
+.no-result {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Custom highlighting style that wraps perfectly around the word width size */
+.search-word-glow {
+  background-color: #1d4ed8 !important; /* Premium button blue color */
+  color: #ffffff !important;
+  padding: 2px 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px #1d4ed8;
+  font-weight: bold;
+  display: inline-block; /* Crucial: Keeps the highlight tight to word length size */
+  transition: all 0.3s ease;
+}
+</style>
+
+
+<style>
+  /* crucial for other web hidden search menu */
+  ==========================================================================
+   ELITE HIGH-PERFORMANCE FUNCTIONAL DRAWER MATRIX (2-COLUMN GRID LINKS)
+   ========================================================================== */
+#menu-check, .burger-btn, .mobile-actions-right { display: none; }
+.logo { text-decoration: none; display: flex; align-items: center; }
+
+@media (max-width: 991px) {
+  /* 1. Header Frame Control Line */
+  #header { height: 70px !important; padding: 0 15px !important; display: flex !important; align-items: center !important; }
+  .container { display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; margin: 0 !important; max-width: 100% !important; gap: 0 !important; }
+  .container1 { margin-left: 0 !important; padding: 0 !important; }
+  
+  /* 2. Top-Right Header Elements Block */
+  .mobile-actions-right { display: flex !important; align-items: center !important; gap: 15px !important; }
+  .toggle-button { display: flex !important; }
+  .burger-btn { display: flex !important; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; cursor: pointer; z-index: 100000; }
+  .burger-btn span { width: 100%; height: 3px; background-color: #ffffff; border-radius: 4px; transition: 0.3s cubic-bezier(0.1, 0.8, 0.1, 1); }
+
+  /* 3. Left-to-Right Drawer Component */
+  .linklists { 
+    position: fixed !important; top: 70px !important; left: -100% !important; right: auto !important; width: 290px !important; height: calc(100vh - 70px) !important; background: rgba(20, 24, 33, 0.98) !important; backdrop-filter: blur(15px) !important; padding: 25px 15px !important; z-index: 99999 !important; box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5) !important; transition: left 0.4s cubic-bezier(0.1, 0.8, 0.1, 1) !important;
+    display: flex !important; flex-direction: column !important; gap: 20px !important; 
+  }
+
+  /* 4. Dynamic Javascript Search Module Integration */
+  .search-panel-block { display: flex !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+  .search-circle { width: 100% !important; margin: 0 !important; display: block !important; position: relative !important; }
+  .search-circle input { width: 100% !important; background: rgba(255, 255, 255, 0.1) !important; color: #fff !important; border: 1px solid #444 !important; border-radius: 6px !important; padding: 8px 35px 8px 12px !important; font-size: 15px !important; }
+  .search-circle i { color: #aaa !important; position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; }
+
+  /* Dashboard Label text design styling */
+  .dashboard-tag { color: #c5a880 !important; font-size: 11px !important; font-weight: 800 !important; letter-spacing: 1px !important; margin: 5px 0 -5px 0 !important; display: block !important; text-align: left !important; }
+
+  /* 5. PERFECT 2-COLUMN DISPLAY MATRIX FOR YOUR LINKS CRITICAL */
+  .linklists ul.dashboard-grid { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px !important; 
+    width: 100% !important; 
+    padding: 0 !important; 
+    margin: 0 !important; 
+  }
+  .linklists ul.dashboard-grid li { width: 100% !important; list-style-type: none !important; }
+
+  /* Reformatting your link tags into modern clickable button block matrices */
+  .dash-card {
+    background-color: #172237 !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px !important;
+    padding: 15px 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    text-align: left !important;
+    transition: background-color 0.2s !important;
+  }
+  .dash-card:hover { background-color: #1e2d4a !important; }
+  .dash-card i { color: #f5b041 !important; font-size: 16px !important; } /* Clean premium layout accent icons */
+  .dash-card span { color: #ffffff !important; font-size: 14px !important; font-weight: 600 !important; }
+
+  /* Handle style adjustments for active focus items or custom highlights natively */
+  .link-active { background-color: #212b3e !important; border-color: rgba(197, 168, 128, 0.2) !important; }
+  .link-active span { color: #f5b041 !important; }
+  #unique-news { background: #172237 !important; animation: none !important; } /* Clear conflicting desktop background values */
+  #unique-news i { color: #ff007f !important; } /* Keep news glowing accent */
+
+  /* 6. Action Button Layout Fit at the base matching the church app style wide design */
+  .button-panel-block { display: flex !important; width: 100% !important; margin-top: auto !important; padding-bottom: 10px !important; }
+  .get-started { width: 100% !important; padding: 0 !important; }
+  .get-started button { width: 100% !important; display: block !important; background: linear-gradient(90deg, #f39c12, #e67e22) !important; border-radius: 25px !important; padding: 12px !important; box-shadow: 0 4px 15px rgba(230, 126, 20, 0.2) !important; }
+  .get-started button a { color: #000000 !important; font-weight: 700 !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; }
+
+  /* ==========================================================================
+     THE ULTIMATE PURE CSS SIBLING TRIGGERS
+     ========================================================================== */
+  #menu-check:checked ~ .container .linklists { left: 0 !important; }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(2) { opacity: 0; }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+}
+
+</style>
+
+<!-- the real true -->
+
+<!-- 
+
+
+/* ========= ADVANCE MEDIA ANDROID DEVICE ========== */
+@media (max-width: 991px) {
+  /* Hides search on desktop top bar */
+  .right-sidebar { display: none; } 
+
+  /* 1. TOP MOBILE HEADER FIX */
+  #header, .container { display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; margin: 0 !important; }
+  .mobile-actions-right { display: flex !important; align-items: center !important; gap: 15px !important; }
+  .burger-btn { display: flex !important; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; cursor: pointer; z-index: 100000; }
+  .burger-btn span { width: 100%; height: 3px; background-color: #fff; border-radius: 4px; transition: 0.3s ease; }
+
+  /* 2. SLIDING DRAWER MENU CONTAINER */
+  .linklists { position: fixed !important; top: 70px !important; left: -100% !important; right: auto !important; width: 290px !important; height: calc(100vh - 70px) !important; background: rgba(20, 24, 33, 0.98) !important; backdrop-filter: blur(15px) !important; padding: 25px 15px !important; z-index: 99999 !important; box-shadow: 5px 0 20px rgba(0,0,0,0.5) !important; transition: left 0.4s cubic-bezier(0.1, 0.8, 0.1, 1) !important; display: flex !important; flex-direction: column !important; gap: 20px !important; }
+  
+  /* 3. MOBILE INSTANT SEARCH PANEL */
+  .search-panel-block { display: flex !important; width: 100% !important; }
+  .search-circle { width: 100% !important; position: relative !important; }
+  .search-circle input { width: 100% !important; background: rgba(255,255,255,0.1) !important; color: #fff !important; border: 1px solid #444 !important; border-radius: 8px !important; padding: 8px 35px 8px 12px !important; }
+  .search-circle i { color: #aaa !important; position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; }
+
+  /* 4. THE SHORTHAND 2-COLUMN POWER GRID HACK */
+  .linklists ul.flex { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; /* Forces perfect 2 columns */
+    gap: 10px !important; 
+    width: 100% !important; 
+    padding: 0 !important;
+  }
+  
+  /* Formats your existing links instantly into beautiful block cards */
+  .linklists ul li a { 
+    display: block !important; 
+    background-color: #172237 !important; 
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    color: #ffffff !important; 
+    font-size: 14px !important; 
+    font-weight: 600 !important;
+    padding: 20px 12px !important; 
+    border-radius: 12px !important; 
+    text-align: left !important;
+  }
+  .linklists ul li a.link-active { background-color: #212b3e !important; color: #094576 !important; }
+  #unique-news { background: #172237 !important; animation: none !important; }
+
+  /* 5. GET STARTED BUTTON AT THE BOTTOM */
+  .button-panel-block { display: flex !important; width: 100% !important; margin-top: auto !important; padding-bottom: 10px !important; }
+  .get-started, .get-started button { width: 100% !important; }
+  .get-started button { background: linear-gradient(90deg, #094576, #094576) !important; border-radius: 25px !important; padding: 12px !important; }
+  .get-started button a { color: #000 !important; font-weight: 700 !important; display: block !important; }
+
+  /* 6. CSS CHECKED STATE TRIGGERS */
+  #menu-check:checked ~ .container .linklists { left: 0 !important; }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(2) { opacity: 0; }
+  #menu-check:checked ~ .container .burger-btn span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+}
+
+-->
+
+<main>
+   <header id="header">
+  <!-- 1. Pure CSS State Trigger Box -->
+  <input type="checkbox" id="menu-check">
+
+  <div class="container">
+    <!-- 2. Hyperlinked Logo - Now works perfectly when clicked -->
+    <a href="/" class="logo">
+      <div class="logoimg">
+        <h1>Unlocked</h1>
+      </div>
+    </a>
+
+    <!-- 3. Desktop Hidden Top-Right Control Bar Element -->
+    <div class="mobile-actions-right">
+      <div class="toggle-button">
+        <input type="checkbox" class="toggle-input">
+      </div>
+      <label for="menu-check" class="burger-btn">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
+
+    <!-- 4. Left-to-Right Animated Mobile Panel Drawer Grid -->
+    <div class="linklists">
+      
+      <!-- Fully Restored Functional JavaScript Search (Moves exactly to the top) -->
+      <div class="right-sidebar search-panel-block">
+        <div class="search-circle">
+          <input type="text" placeholder="Search..." class="js-search-circle">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <!-- Your functional Javascript drop-down container remains completely intact -->
+          <div class="search-results js-results-box"></div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Menu Link Directory Lists -->
+      <ul class="flex">
+        <li><a href="/" class="link-active">Offices</a></li>
+        <li><a href="/">Services</a></li>
+        <li><a href="cultures.html">Cultures/Blogs</a></li>
+        <li><a href="/" id="unique-news">News</a></li>
+        <li><a href="/">Partners</a></li>
+      </ul>
+
+      <!-- Restored Premium Action Button at the Bottom of Menu Grid -->
+      <div class="right-sidebar button-panel-block">
+        <div class="get-started">
+          <button><a href="/">Get Started</a></button>
+        </div>
+      </div>
+
+    </div> 
+  </div> 
+</header>
+
+
+
+<!-- second heard -->
+ 
+<!-- <header id="header">
+  <input type="checkbox" id="menu-check">
+
+  <div class="container">
+    Clickable Logo
+    <a href="/" class="logo">
+      <div class="logoimg">
+        <h1>Unlocked</h1>
+      </div>
+    </a>
+
+    Top Right Header Control Panel
+    <div class="mobile-actions-right">
+      <div class="toggle-button">
+        <input type="checkbox" class="toggle-input">
+      </div>
+      <label for="menu-check" class="burger-btn">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
+
+    Hidden Slide-Out Panel Container Menu
+    <div class="linklists">
+      
+      Restored Functional JavaScript Search (Top of Drawer)
+      <div class="right-sidebar search-panel-block">
+        <div class="search-circle">
+          <input type="text" placeholder="Search..." class="js-search-circle">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <div class="search-results js-results-box"></div>
+        </div>
+      </div>
+
+      THE GRID WRAPPER: Arranges your exact existing links into 2 columns
+      <p class="dashboard-tag">PRINCIPAL</p>
+      <ul class="flex dashboard-grid">
+        <li>
+          <a href="/" class="link-active dash-card">
+            <i class="fa-solid fa-building"></i>
+            <span>Offices</span>
+          </a>
+        </li>
+        <li>
+          <a href="/" class="dash-card">
+            <i class="fa-solid fa-gears"></i>
+            <span>Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="cultures.html" class="dash-card">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Cultures/Blogs</span>
+          </a>
+        </li>
+        <li>
+          <a href="/" id="unique-news" class="dash-card">
+            <i class="fa-solid fa-bolt-lightning"></i>
+            <span>News</span>
+          </a>
+        </li>
+        <li>
+          <a href="/" class="dash-card">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Partners</span>
+          </a>
+        </li>
+      </ul>
+
+      Floating Get Started Action Button at the Bottom
+      <div class="right-sidebar button-panel-block">
+        <div class="get-started">
+          <button><a href="/"><i class="fa-solid fa-circle-play"></i> Get Started</a></button>
+        </div>
+      </div>
+
+    </div> 
+  </div> 
+</header> -->
+
